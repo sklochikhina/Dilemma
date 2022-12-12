@@ -5,8 +5,9 @@
 #include "game_runner.h"
 
 std::vector<Strategy*> make_strategies_from_names(const std::vector<std::string>& names) {
-	// добавить проверку на допустимый размер вектора? //
-	std::vector<Strategy*> strategies(COLS);
+	assert(COLS == names.size());
+	std::vector<Strategy*> strategies;
+	strategies.reserve(COLS);
 
 	for (auto& name : names)
 		strategies.push_back(create_strategy(name));
