@@ -4,7 +4,7 @@
 
 #include "strategy.h"
 
-Arguments CLI::parsing_args(int argc, char* argv) {
+Arguments CLI::parsing_args(int argc, char** argv) {
 	Arguments args;
 	std::size_t pos = 0;
 	std::string argument;
