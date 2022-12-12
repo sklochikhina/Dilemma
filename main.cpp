@@ -16,7 +16,7 @@ int main(int argc, char** argv) {
 		CLI ui;				// user input
 		ui.print_help();
 
-		Arguments args = ui.parsing_args(argc, argv);	// почему читает русские символы, которых нет??
+		Arguments args = ui.parsing_args(argc, argv);
 
 		Runner* runner;
 
