@@ -3,7 +3,7 @@
 
 #include "game_runner.h"
 
-int main(int argc, char* argv) {
+int main(int argc, char** argv) {
 
 	if (argc < 4) {
 		std::cerr << "Invalid number of arguments: names of at least 3 strategies" << std::endl;
@@ -16,7 +16,7 @@ int main(int argc, char* argv) {
 		CLI ui;				// user input
 		ui.print_help();
 
-		Arguments args = ui.parsing_args(argc, argv);	// ïî÷åìó ÷èòàåò ðóññêèå ñèìâîëû, êîòîðûõ íåò??
+		Arguments args = ui.parsing_args(argc, argv);	// Ð¿Ð¾Ñ‡ÐµÐ¼Ñƒ Ñ‡Ð¸Ñ‚Ð°ÐµÑ‚ Ñ€ÑƒÑÑÐºÐ¸Ðµ ÑÐ¸Ð¼Ð²Ð¾Ð»Ñ‹, ÐºÐ¾Ñ‚Ð¾Ñ€Ñ‹Ñ… Ð½ÐµÑ‚??
 
 		Runner* runner;
 
