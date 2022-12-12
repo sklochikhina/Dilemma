@@ -22,7 +22,7 @@ struct Arguments {
 
 class CLI {
 public:
-	Arguments parsing_args(int argc, char* argv);
+	Arguments parsing_args(int argc, char** argv);
 	bool read_comand();
 	void print_after_game(const std::vector<std::string>& names, const Result& result);
 	void print_intermediate(const std::vector<std::string>& names, const Result& result);
