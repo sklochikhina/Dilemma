@@ -4,6 +4,17 @@
 
 static const std::size_t ROWS = 8;
 
+enum class Scores {
+	CCC = 0,
+	CCD,
+	CDC,
+	CDD,
+	DCC,
+	DCD,
+	DDC,
+	DDD,
+};
+
 int choices_to_idx(const std::vector<Choice>& choices) {
 	return static_cast<int>(choices[0]) * 4
 		+ static_cast<int>(choices[1]) * 2 
@@ -24,9 +35,18 @@ Matrix::Matrix() {
 
 std::vector<int> Matrix::get_payoffs(const std::vector<Choice>& choices) { return _matrix[choices_to_idx(choices)]; }
 
+bool check_matrix(const std::string& file_name) {
+
+}
+
 Matrix read_matrix(const std::string& file_name) {
 	if (file_name.empty())
 		return Matrix{};
-	return Matrix{};
-	// добавить чтение файла с матрицей //
+
+	std::ifstream stream(file_name);
+	if (!stream.is_open())
+		throw std::invalid_argument("Can't open matrix file");
+
+	// РґРѕР±Р°РІРёС‚СЊ СЃС‡РёС‚С‹РІР°РЅРёРµ РјР°С‚СЂРёС†С‹ Рё РІС‹Р·РѕРІ check_matrix
+	
 }
