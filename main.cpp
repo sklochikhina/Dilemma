@@ -28,8 +28,8 @@ int main(int argc, char** argv) {
 		runner->run(ui);
 	}
 
-	catch (std::exception) {
-		std::cerr << "Caught some exception" << std::endl;
+	catch (std::exception& excp) {
+		std::cerr << "Caught exception: " << excp.what() << std::endl;
 		return -1;
 	}
 
