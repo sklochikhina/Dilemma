@@ -35,8 +35,12 @@ Matrix::Matrix() {
 
 std::vector<int> Matrix::get_payoffs(const std::vector<Choice>& choices) { return _matrix[choices_to_idx(choices)]; }
 
-bool check_matrix(const std::string& file_name) {
+std::vector<int>& Matrix::operator [](std::size_t row) {
+	return _matrix[row];
+}
 
+bool Matrix::check_matrix(const std::string& file_name) {
+	return true;
 }
 
 Matrix read_matrix(const std::string& file_name) {
@@ -47,6 +51,20 @@ Matrix read_matrix(const std::string& file_name) {
 	if (!stream.is_open())
 		throw std::invalid_argument("Can't open matrix file");
 
-	// добавить считывание матрицы и вызов check_matrix
-	
+	Matrix matrix{};
+	std::vector<int> inputs(COLS, 0);
+	std::vector<int> row(inputs);
+
+	for (int i = 0; i < ROWS; i++) {
+		if (stream >> inputs[0] >> inputs[1] >> inputs[2]) {
+			for (int j = 0; j < COLS; j++)
+				row[j] = inputs[j];
+
+			matrix[i] = row;
+		}
+		else
+			throw std::invalid_argument("Invalid matrix");
+	}
+	matrix.check_matrix(file_name);
+	return matrix;
 }
