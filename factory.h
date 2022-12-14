@@ -11,39 +11,22 @@
 
 class Factory {
 public:
-	virtual Strategy* create() = 0;
+	Strategy* create(const std::string& name) {
+		if ("cooperate" == name) {
+			return new Cooperate;
+		}
+		else if ("betray" == name) {
+			return new Betray;
+		}
+		else if ("random" == name) {
+			return new Random;
+		}
+		else {
+			return new Change;
+		}
+		// –¥–æ–±–∞–≤–∏—Ç—å —Å–ª–æ–∂–Ω—ã–µ —Å—Ç—Ä–∞—Ç–µ–≥–∏–∏ //
+	}
 	virtual ~Factory() {};
-};
-
-// ---------------- BETRAY ---------------- //
-class BetrayFactory : public Factory {
-public:
-	Strategy* create() {
-		return new Betray;
-	}
-};
-
-// ---------------- COOPERATE ---------------- //
-class CoooperateFactory : public Factory {
-public:
-	Strategy* create() {
-		return new Cooperate;
-	}
-};
-
-// ---------------- RANDOM ---------------- //
-class RandomFactory : public Factory {
-public:
-	Strategy* create() {
-		return new Random;
-	}
-};
-
-// ---------------- CHANGE ---------------- //
-class ChangeFactory : public Factory {
-	Strategy* create() {
-		return new Change;
-	}
 };
 
 const std::vector<std::string> _creators = { "cooperate",
@@ -61,27 +44,7 @@ inline bool search_strategy_by_id(const std::string& id) {
 }
 
 inline Strategy* create_strategy(const std::string& id) {
-
 	search_strategy_by_id(id);
-	Factory* strategy;
-
-	if ("cooperate" == id) {
-		CoooperateFactory coop;
-		strategy = &coop;
-	}
-	else if ("betray" == id) {
-		BetrayFactory betr;
-		strategy = &betr;
-	}
-	else if ("random" == id) {
-		RandomFactory rand;
-		strategy = &rand;
-	}
-	else {
-		ChangeFactory change;
-		strategy = &change;
-	}
-	// ‰Ó·‡‚ËÚ¸ ÒÎÓÊÌ˚Â ÒÚ‡ÚÂ„ËË //
-
-	return strategy->create();
+	Factory* strategy{};
+	return strategy->create(id);
 }
