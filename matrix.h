@@ -8,8 +8,8 @@ public:
 	Matrix();
 	Matrix(const Matrix& other) = default;
 	~Matrix() = default;
-	std::vector<int> get_payoffs(const std::vector<Choice>& choices); // 3 выигрыша
-	// добавить проверку матрицы на консистентность
+	std::vector<int> get_payoffs(const std::vector<Choice>& choices); // 3 РІС‹РёРіСЂС‹С€Р°
+	bool check_matrix(const std::string& file_name);
 private:
 	std::vector<std::vector<int>> _matrix;
 };
