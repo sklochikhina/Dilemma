@@ -26,6 +26,8 @@ int main(int argc, char** argv) {
 			runner = new Fast_runner(read_matrix(args.matrix_file), args.strategies, args.steps);
 
 		runner->run(ui);
+
+		delete runner;
 	}
 
 	catch (std::exception& excp) {
