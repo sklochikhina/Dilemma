@@ -10,7 +10,7 @@ public:
 	~Matrix() = default;
 	std::vector<int> get_payoffs(const std::vector<Choice>& choices); // 3 выигрыша
 	std::vector<int>& operator [](std::size_t idx);
-	bool check_matrix(const std::string& file_name);
+	bool check_matrix(const std::vector<std::vector<char>>& letter);
 private:
 	std::vector<std::vector<int>> _matrix;
 };
