@@ -107,5 +107,7 @@ Matrix read_matrix(const std::string& file_name) {
 			throw std::invalid_argument("Invalid matrix");
 	}
 	matrix.check_matrix(letters);
+	stream.close();
+
 	return matrix;
 }
