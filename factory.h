@@ -35,7 +35,8 @@ public:
 const std::vector<std::string> _creators = { "cooperate",
 												"betray",
 												"random",
-												"change", };
+												"change",
+												"majority", };
 
 inline bool search_strategy_by_id(const std::string& id) {
 	auto it = std::find(_creators.begin(), _creators.end(), id);
