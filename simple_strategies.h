@@ -1,10 +1,8 @@
 #pragma once
 
-#include <random>
-
 #include "strategy.h"
 
-class Betray : public Strategy {	// всегда предаёт
+class Betray : public Strategy {	// РІСЃРµРіРґР° РїСЂРµРґР°С‘С‚
 public:
 	void make_choice() override;
 	Choice get_choice() override;
@@ -13,7 +11,7 @@ private:
 	Choice _choice = Choice::BETRAY;
 };
 
-class Cooperate : public Strategy {	// всегда сотрудничает
+class Cooperate : public Strategy {	// РІСЃРµРіРґР° СЃРѕС‚СЂСѓРґРЅРёС‡Р°РµС‚
 public:
 	void make_choice() override;
 	Choice get_choice() override;
@@ -22,7 +20,7 @@ private:
 	Choice _choice = Choice::COOPERATE;
 };
 
-class Random : public Strategy {	// выбирает случайно
+class Random : public Strategy {	// РІС‹Р±РёСЂР°РµС‚ СЃР»СѓС‡Р°Р№РЅРѕ
 public:
 	void make_choice() override;
 	Choice get_choice() override;
@@ -31,7 +29,7 @@ private:
 	Choice _choice = Choice::COOPERATE;
 };
 
-class Change : public Strategy {	// постоянно меняет решение
+class Change : public Strategy {	// РїРѕСЃС‚РѕСЏРЅРЅРѕ РјРµРЅСЏРµС‚ СЂРµС€РµРЅРёРµ
 public:
 	void make_choice() override;
 	Choice get_choice() override;
