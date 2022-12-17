@@ -21,10 +21,13 @@ public:
 		else if ("random" == name) {
 			return new Random;
 		}
-		else {
+		else if ("change" == name) {
 			return new Change;
 		}
-		// добавить сложные стратегии //
+		else if ("majority" == name) {
+			return new Majority;
+		}
+		// добавить ещё одну сложную стратегию //
 	}
 	virtual ~Factory() {};
 };
