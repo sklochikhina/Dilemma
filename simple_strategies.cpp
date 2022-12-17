@@ -1,5 +1,6 @@
 #include <iostream>
 #include <functional>
+#include <random>
 
 #include "simple_strategies.h"
 
