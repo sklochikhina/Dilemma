@@ -4,6 +4,15 @@
 
 static const std::size_t ROWS = 8;
 
+const short CCC = 0, 
+			CCD = 1, 
+			CDC = 2, 
+			CDD = 3, 
+			DCC = 4, 
+			DCD = 5, 
+			DDC = 6, 
+			DDD = 7;
+
 int choices_to_idx(const std::vector<Choice>& choices) {
 	return static_cast<int>(choices[0]) * 4
 		+ static_cast<int>(choices[1]) * 2 
@@ -12,13 +21,13 @@ int choices_to_idx(const std::vector<Choice>& choices) {
 
 Matrix::Matrix() {
 	_matrix = {
-		std::vector<int>{7, 7, 7},	// CCC
-		std::vector<int>{3, 3, 9},	// CCD
-		std::vector<int>{3, 9, 3},	// CDC
-		std::vector<int>{0, 5, 5},	// CDD
-		std::vector<int>{9, 3, 3},	// DCC
-		std::vector<int>{5, 0, 5},	// DCD
-		std::vector<int>{5, 5, 0},	// DDC
+		std::vector<int>{7, 7, 7},		// CCC
+		std::vector<int>{3, 3, 9},		// CCD
+		std::vector<int>{3, 9, 3},		// CDC
+		std::vector<int>{0, 5, 5},		// CDD
+		std::vector<int>{9, 3, 3},		// DCC
+		std::vector<int>{5, 0, 5},		// DCD
+		std::vector<int>{5, 5, 0},		// DDC
 		std::vector<int>{1, 1, 1}, };	// DDD
 }
 
@@ -44,34 +53,34 @@ bool Matrix::check_matrix(const std::vector<std::vector<char>>& letters) {
 			throw std::invalid_argument("Invaid matrix");
 
 	// CCC, DDD
-	if (!(_matrix[0][0] == _matrix[0][1] && _matrix[0][0] == _matrix[0][2]) || 
-		!(_matrix[7][0] == _matrix[7][1] && _matrix[7][0] == _matrix[7][2]))
+	if (!(_matrix[CCC][0] == _matrix[CCC][1] && _matrix[CCC][0] == _matrix[CCC][2]) || 
+		!(_matrix[DDD][0] == _matrix[DDD][1] && _matrix[DDD][0] == _matrix[DDD][2]))
 		throw std::invalid_argument("Invaid matrix");
 
 	// CCD, CDC, DCC (для выбора "сотрудничать")
-	else if (!(_matrix[1][0] == _matrix[1][1] && _matrix[1][0] == _matrix[2][0] && _matrix[1][0] == _matrix[2][2] 
-			&& _matrix[1][0] == _matrix[4][1] && _matrix[1][0] == _matrix[4][2]))
+	else if (!(_matrix[CCD][0] == _matrix[CCD][1] && _matrix[CCD][0] == _matrix[CDC][0] && _matrix[CCD][0] == _matrix[CDC][2] 
+			&& _matrix[CCD][0] == _matrix[DCC][1] && _matrix[CCD][0] == _matrix[DCC][2]))
 		throw std::invalid_argument("Invaid matrix");
 
 	// DCD, CDD, DDC (для выбора "предать")
-	else if (!(_matrix[5][0] == _matrix[3][1] && _matrix[5][0] == _matrix[3][2] && _matrix[5][0] == _matrix[5][2]
-			&& _matrix[5][0] == _matrix[6][0] && _matrix[5][0] == _matrix[6][1]))
+	else if (!(_matrix[DCD][0] == _matrix[CDD][1] && _matrix[DCD][0] == _matrix[CDD][2] && _matrix[DCD][0] == _matrix[DCD][2]
+			&& _matrix[DCD][0] == _matrix[DDC][0] && _matrix[DCD][0] == _matrix[DDC][1]))
 		throw std::invalid_argument("Invaid matrix");
 
 	// CDD, DCD, DDC (для выбора "сотрудничать")
-	else if (!(_matrix[3][0] == _matrix[5][1] && _matrix[3][0] == _matrix[6][2]))
+	else if (!(_matrix[CDD][0] == _matrix[DCD][1] && _matrix[CDD][0] == _matrix[DDC][2]))
 		throw std::invalid_argument("Invaid matrix");
 
 	// CCD, CDC, DCC (для выбора "предать")
-	else if (!(_matrix[1][2] == _matrix[2][1] && _matrix[1][2] == _matrix[4][0]))
+	else if (!(_matrix[CCD][2] == _matrix[CDC][1] && _matrix[CCD][2] == _matrix[DCC][0]))
 		throw std::invalid_argument("Invaid matrix");
 
-	const int C1 = _matrix[3][0];	// CDD
-	const int C2 = _matrix[1][0];	// CCD
-	const int C3 = _matrix[0][0];	// CCC
-	const int D1 = _matrix[4][0];	// DCC
-	const int D2 = _matrix[6][0];	// DDC
-	const int D3 = _matrix[7][0];	// DDD
+	const int C1 = _matrix[CDD][0];
+	const int C2 = _matrix[CCD][0];
+	const int C3 = _matrix[CCC][0];
+	const int D1 = _matrix[DCC][0];
+	const int D2 = _matrix[DDC][0];
+	const int D3 = _matrix[DDD][0];
 
 	if (!(D1 > C3 && C3 > D2 && D2 > C2 && C2 > D3 && D3 > C1))
 		throw std::invalid_argument("Invaid matrix");
