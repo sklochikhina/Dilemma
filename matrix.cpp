@@ -5,13 +5,13 @@
 static const std::size_t ROWS = 8;
 
 const short CCC = 0, 
-			CCD = 1, 
-			CDC = 2, 
-			CDD = 3, 
-			DCC = 4, 
-			DCD = 5, 
-			DDC = 6, 
-			DDD = 7;
+	    CCD = 1, 
+	    CDC = 2, 
+	    CDD = 3, 
+	    DCC = 4, 
+	    DCD = 5, 
+	    DDC = 6, 
+	    DDD = 7;
 
 int choices_to_idx(const std::vector<Choice>& choices) {
 	return static_cast<int>(choices[0]) * 4
@@ -21,13 +21,13 @@ int choices_to_idx(const std::vector<Choice>& choices) {
 
 Matrix::Matrix() {
 	_matrix = {
-		std::vector<int>{7, 7, 7},		// CCC
-		std::vector<int>{3, 3, 9},		// CCD
-		std::vector<int>{3, 9, 3},		// CDC
-		std::vector<int>{0, 5, 5},		// CDD
-		std::vector<int>{9, 3, 3},		// DCC
-		std::vector<int>{5, 0, 5},		// DCD
-		std::vector<int>{5, 5, 0},		// DDC
+		std::vector<int>{7, 7, 7},	// CCC
+		std::vector<int>{3, 3, 9},	// CCD
+		std::vector<int>{3, 9, 3},	// CDC
+		std::vector<int>{0, 5, 5},	// CDD
+		std::vector<int>{9, 3, 3},	// DCC
+		std::vector<int>{5, 0, 5},	// DCD
+		std::vector<int>{5, 5, 0},	// DDC
 		std::vector<int>{1, 1, 1}, };	// DDD
 }
 
