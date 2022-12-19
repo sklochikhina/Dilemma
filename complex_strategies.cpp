@@ -18,6 +18,13 @@ void Majority::make_choice() {
 
 Choice Mimic::get_choice() { return _choice; }
 
-void Mimic::handle_result(const Result& res) {}
+void Mimic::handle_result(const Result& res) {
+	int max = 0;
+	for (std::size_t i = 0; i < res._scores.size(); i++)
+		if (res._scores[i] > max) {
+			max = res._scores[i];
+			_choice = res._choices[i];
+		}
+}
 
 void Mimic::make_choice() {}
