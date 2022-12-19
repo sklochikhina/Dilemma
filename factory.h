@@ -27,7 +27,9 @@ public:
 		else if ("majority" == name) {
 			return new Majority;
 		}
-		// добавить ещё одну сложную стратегию //
+		else {
+			return new Mimic;
+		}
 	}
 	virtual ~Factory() {};
 };
@@ -36,7 +38,8 @@ const std::vector<std::string> _creators = { "cooperate",
 												"betray",
 												"random",
 												"change",
-												"majority", };
+												"majority",
+												"mimic", };
 
 inline bool search_strategy_by_id(const std::string& id) {
 	auto it = std::find(_creators.begin(), _creators.end(), id);
