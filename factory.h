@@ -4,42 +4,18 @@
 #include "complex_strategies.h"
 #include "simple_strategies.h"
 
-#include <map>
-#include <functional>
-#include <memory>
-#include <stdexcept>
-
 class Factory {
 public:
-	Strategy* create(const std::string& name) {
-		if ("cooperate" == name) {
-			return new Cooperate;
-		}
-		else if ("betray" == name) {
-			return new Betray;
-		}
-		else if ("random" == name) {
-			return new Random;
-		}
-		else if ("change" == name) {
-			return new Change;
-		}
-		else if ("majority" == name) {
-			return new Majority;
-		}
-		else {
-			return new Mimic;
-		}
-	}
+	Strategy* create(const std::string& name);
 	virtual ~Factory() {};
 };
 
 const std::vector<std::string> _creators = { "cooperate",
-												"betray",
-												"random",
-												"change",
-												"majority",
-												"mimic", };
+						"betray",
+						"random",
+						"change",
+						"majority",
+						"mimic", };
 
 inline bool search_strategy_by_id(const std::string& id) {
 	auto it = std::find(_creators.begin(), _creators.end(), id);
