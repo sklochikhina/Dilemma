@@ -15,16 +15,16 @@ std::vector<Strategy*> make_strategies_from_names(const std::vector<std::string>
 	return strategies;
 }
 
-Detailed_runner::Detailed_runner(const Matrix& matrix, std::vector<std::string> names) :
+DetailedRunner::DetailedRunner(const Matrix& matrix, std::vector<std::string> names) :
 	game(matrix, make_strategies_from_names(names)),
 	_names(std::move(names)) {}
 
-Fast_runner::Fast_runner(const Matrix& matrix, std::vector<std::string> names, std::size_t steps) :
+FastRunner::FastRunner(const Matrix& matrix, std::vector<std::string> names, std::size_t steps) :
 	game(matrix, make_strategies_from_names(names)),
 	_names(std::move(names)),
 	_steps(steps) {}
 
-void Detailed_runner::run(CLI& interface) {
+void DetailedRunner::run(CLI& interface) {
 	while (interface.read_comand()) {
 		game.step();
 		interface.print_intermediate(_names, game.get_result());
@@ -32,7 +32,7 @@ void Detailed_runner::run(CLI& interface) {
 	interface.print_after_game(_names, game.get_result());
 }
 
-void Fast_runner::run(CLI& interface) {
+void FastRunner::run(CLI& interface) {
 	for (std::size_t i = 0; i < _steps; i++)
 		game.step();
 	interface.print_after_game(_names, game.get_result());
