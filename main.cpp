@@ -21,9 +21,9 @@ int main(int argc, char** argv) {
 		Runner* runner;
 
 		if (Mode::DETAILED == args.mode)
-			runner = new Detailed_runner(read_matrix(args.matrix_file), args.strategies);
+			runner = new DetailedRunner(read_matrix(args.matrix_file), args.strategies);
 		else
-			runner = new Fast_runner(read_matrix(args.matrix_file), args.strategies, args.steps);
+			runner = new FastRunner(read_matrix(args.matrix_file), args.strategies, args.steps);
 
 		runner->run(ui);
 
