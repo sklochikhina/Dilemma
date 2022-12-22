@@ -1,7 +1,10 @@
 #include "complex_strategies.h"
 #include "factory.h"
 
-Choice Majority::get_choice() { return _choice; }
+
+Choice Majority::make_choice() {
+	return (num_coop > num_betr) ? Choice::COOPERATE : Choice::BETRAY;
+}
 
 void Majority::handle_result(const Result& res) {
 	for (auto& choice : res._choices) {
@@ -12,11 +15,9 @@ void Majority::handle_result(const Result& res) {
 	}
 }
 
-void Majority::make_choice() {
-	(num_coop > num_betr) ? _choice = Choice::COOPERATE : _choice = Choice::BETRAY;
-}
 
-Choice Mimic::get_choice() { return _choice; }
+
+Choice Mimic::make_choice() { return _choice; }
 
 void Mimic::handle_result(const Result& res) {
 	int max = 0;
@@ -26,5 +27,3 @@ void Mimic::handle_result(const Result& res) {
 			_choice = res._choices[i];
 		}
 }
-
-void Mimic::make_choice() {}
