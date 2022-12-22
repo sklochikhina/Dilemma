@@ -3,10 +3,8 @@
 
 void Game::step() {
 	
-	for (std::size_t i = 0; i < _strategies.size(); i++) {
-		_strategies[i]->make_choice();
-		_res._choices[i] = _strategies[i]->get_choice();
-	}
+	for (std::size_t i = 0; i < _strategies.size(); i++)
+		_res._choices[i] = _strategies[i]->make_choice();
 
 	_res._payoffs = _matrix.get_payoffs(_res._choices);
 
