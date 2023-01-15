@@ -9,7 +9,7 @@
 
 class Game {
 public:
-	Game(const Matrix& matrix, std::vector<Strategy*> strategies);
+	Game(const Matrix& matrix, std::vector<Strategy*>* strategies);
 	void step();
 	Result get_result();
 private:
