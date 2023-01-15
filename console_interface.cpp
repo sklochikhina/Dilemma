@@ -86,13 +86,13 @@ bool CLI::read_comand() {
 void CLI::print_after_game(const std::vector<std::string>& names, const Result& result) {
 	std::cout << std::string("FINAL SCORES FOR THE TRIPLE") << std::endl;
 	for (std::size_t i = 0; i < names.size(); i++)
-		std::cout << "[" << names[i] << ", " << result._scores[i] << "]" << std::endl;
+		std::cout << "[" << names[i] << ":\t" << result._scores[i] << "]" << std::endl;
 }
 
 void CLI::print_final(const std::map<std::string, int>& map) {
 	std::cout << "------RESULTS FOR ALL STRATEGIES------" << std::endl;
 	for (auto& strategy : map)
-		std::cout << "[" << strategy.first << ", " << strategy.second << "]" << std::endl;
+		std::cout << "[" << strategy.first << ":\t" << strategy.second << "]" << std::endl;
 }
 
 void CLI::print_intermediate(const std::vector<std::string>& names, const Result& result) {
@@ -101,7 +101,7 @@ void CLI::print_intermediate(const std::vector<std::string>& names, const Result
 		std::string choice = "cooperate";
 		if (Choice::BETRAY == result._choices[i])
 			choice = "betray";
-		std::cout << "[" << names[i] << ", " << choice << ", "
+		std::cout << "[" << names[i] << ":\t" << choice << ", "
 				  << result._payoffs[i] << ", " << result._scores[i] << "]" << std::endl;
 	}
 	std::cout << "--------------" << std::endl;
