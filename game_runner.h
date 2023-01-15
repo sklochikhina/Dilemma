@@ -17,7 +17,7 @@ public:
 
 class FastRunner : public Runner {
 public:
-	FastRunner(const Matrix& matrix, std::vector<std::string> names, std::size_t steps);
+	FastRunner(const Matrix& matrix, std::vector<std::string>& names, std::size_t& steps);
 	void run(CLI& interface) override;
 private:
 	Game game;
@@ -27,7 +27,7 @@ private:
 
 class DetailedRunner : public Runner {
 public:
-	DetailedRunner(const Matrix& matrix, std::vector<std::string> names);
+	DetailedRunner(const Matrix& matrix, std::vector<std::string>& names);
 	void run(CLI& interface) override;
 private:
 	Game game;
