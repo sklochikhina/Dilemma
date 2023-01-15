@@ -15,10 +15,10 @@ void Game::step() {
 		strategy->handle_result(_res);
 }
 
-Game::Game(const Matrix& matrix, std::vector<Strategy*> strategies) :
+Game::Game(const Matrix& matrix, std::vector<Strategy*>* strategies) :
 	_matrix(matrix),
-	_strategies(std::move(strategies)),
-	_res() {}
+	_strategies(std::move(*strategies)),
+	_res() { delete strategies; }
 
 Result Game::get_result() { return _res; }
 
