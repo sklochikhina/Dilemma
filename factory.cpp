@@ -1,9 +1,15 @@
 #include "factory.h"
 
-#include <map>
 #include <functional>
 #include <memory>
 #include <stdexcept>
+
+const std::vector<std::string> creators = { "cooperate",
+											"betray",
+											"random",
+											"change",
+											"majority",
+											"mimic", };
 
 Strategy* Factory::create(const std::string& name) {
 	if ("cooperate" == name) {
@@ -26,17 +32,22 @@ Strategy* Factory::create(const std::string& name) {
 	}
 }
 
-std::vector<std::string> _creators = { "cooperate",
-										"betray",
-										"random",
-										"change",
-										"majority",
-										"mimic", };
+void Factory::help() {
+	std::cout << "The SIMPLE available strategies:" << std::endl;
+	std::cout << "cooperate\t- always cooperate" << std::endl;
+	std::cout << "betray\t\t- always betray" << std::endl;
+	std::cout << "change\t\t- always change" << std::endl;
+	std::cout << "random\t\t- choosing randomly" << std::endl << std::endl;
+
+	std::cout << "The COMPLEX available strategies:" << std::endl;
+	std::cout << "mimic\t\t- choosing a strategy that scored more points" << std::endl;
+	std::cout << "majority\t- choosing a strategy that a majority chose" << std::endl << std::endl;
+}
 
 bool search_strategy_by_id(const std::string& id) {
-	auto it = std::find(_creators.begin(), _creators.end(), id);
+	auto it = std::find(creators.begin(), creators.end(), id);
 
-	if (it == _creators.end())
+	if (it == creators.end())
 		throw std::invalid_argument("Invalid id for the factory");
 
 	return true;
