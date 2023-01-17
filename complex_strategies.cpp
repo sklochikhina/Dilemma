@@ -1,6 +1,6 @@
 #include "complex_strategies.h"
 #include "factory.h"
-
+#include <algorithm>
 
 Choice Majority::make_choice() {
 	return (num_coop > num_betr) ? Choice::COOPERATE : Choice::BETRAY;
@@ -16,14 +16,10 @@ void Majority::handle_result(const Result& res) {
 }
 
 
-
 Choice Mimic::make_choice() { return _choice; }
 
 void Mimic::handle_result(const Result& res) {
-	int max = 0;
-	for (std::size_t i = 0; i < res._scores.size(); i++)
-		if (res._scores[i] > max) {
-			max = res._scores[i];
-			_choice = res._choices[i];
-		}
+    auto max = max_element(res._scores.begin(), res._scores.end());
+    auto index = distance(res._scores.begin(), max);
+    _choice = res._choices[index];
 }
