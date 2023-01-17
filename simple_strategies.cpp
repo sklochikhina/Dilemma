@@ -1,18 +1,19 @@
 #include <iostream>
 #include <functional>
 #include <random>
+#include <ctime>
 
 #include "simple_strategies.h"
 
 
 Choice Betray::make_choice() { return Choice::BETRAY; }
 
-void Betray::handle_result(const Result& res) {}
+void Betray::handle_result(const Result&) {}
 
 
 Choice Cooperate::make_choice() { return Choice::COOPERATE; }
 
-void Cooperate::handle_result(const Result& res) {}
+void Cooperate::handle_result(const Result&) {}
 
 
 Choice Random::make_choice() {
@@ -21,7 +22,7 @@ Choice Random::make_choice() {
 	return (0 == choice) ? Choice::COOPERATE : Choice::BETRAY;
 }
 
-void Random::handle_result(const Result& res) {}
+void Random::handle_result(const Result&) {}
 
 
 Choice Change::make_choice() {
@@ -32,4 +33,4 @@ Choice Change::make_choice() {
 	return _choice;
 }
 
-void Change::handle_result(const Result& res) {}
+void Change::handle_result(const Result&) {}
