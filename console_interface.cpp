@@ -2,6 +2,7 @@
 
 #include <iostream>
 
+#include "factory.h"
 #include "strategy.h"
 
 Arguments CLI::parsing_args(int argc, char** argv) {
@@ -89,12 +90,6 @@ void CLI::print_after_game(const std::vector<std::string>& names, const Result& 
 		std::cout << "[" << names[i] << ":\t" << result._scores[i] << "]" << std::endl;
 }
 
-void CLI::print_final(const std::map<std::string, int>& map) {
-	std::cout << "------RESULTS FOR ALL STRATEGIES------" << std::endl;
-	for (auto& strategy : map)
-		std::cout << "[" << strategy.first << ":\t" << strategy.second << "]" << std::endl;
-}
-
 void CLI::print_intermediate(const std::vector<std::string>& names, const Result& result) {
 	std::cout << "--------------" << std::endl;
 	for (std::size_t i = 0; i < names.size(); i++) {
@@ -102,7 +97,7 @@ void CLI::print_intermediate(const std::vector<std::string>& names, const Result
 		if (Choice::BETRAY == result._choices[i])
 			choice = "betray";
 		std::cout << "[" << names[i] << ":\t" << choice << ", "
-				  << result._payoffs[i] << ", " << result._scores[i] << "]" << std::endl;
+			<< result._payoffs[i] << ", " << result._scores[i] << "]" << std::endl;
 	}
 	std::cout << "--------------" << std::endl;
 }
@@ -110,18 +105,8 @@ void CLI::print_intermediate(const std::vector<std::string>& names, const Result
 void CLI::print_help() {
 	std::cout << "Mandatory arguments: names of at least 3 strategies" << std::endl;
 	std::cout << "Possible options:" << std::endl;
-	std::cout << "--help for outputing these options" << std::endl;
 	std::cout << "--mode=[detailed|fast|tournament], --detailed by default for 3 strategies, --tournament for > 3 (OPTIONAL)" << std::endl;
 	std::cout << "--steps=<n>, n = 10 by default (OPTIONAL)" << std::endl;
 	std::cout << "--matrix=<filename> for full path to game matrix (OPTIONAL)" << std::endl << std::endl;
-
-	std::cout << "The SIMPLE available strategies:" << std::endl;
-	std::cout << "cooperate\t- always cooperate" << std::endl;
-	std::cout << "betray\t\t- always betray" << std::endl;
-	std::cout << "change\t\t- always change" << std::endl;
-	std::cout << "random\t\t- choosing randomly" << std::endl << std::endl;
-
-	std::cout << "The COMPLEX available strategies:" << std::endl;
-	std::cout << "mimic\t\t- choosing a strategy that scored more points" << std::endl;
-	std::cout << "majority\t- choosing a strategy that a majority chose" << std::endl << std::endl;
+	std::cout << "--help for outputing available strategies" << std::endl;
 }
