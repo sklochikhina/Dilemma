@@ -6,7 +6,13 @@
 int main(int argc, char** argv) {
 
 	if (argc < 4) {
-		std::cerr << "Invalid number of arguments: names of at least 3 strategies" << std::endl;
+		if (argc == 2 && (static_cast<std::string>(argv[1]) == "--help")) {
+			Factory help;
+			help.help();
+			return -1;
+		}
+		else
+			std::cerr << "Invalid number of arguments: names of at least 3 strategies" << std::endl;
 		CLI ui;
 		ui.print_help();
 		return -1;
